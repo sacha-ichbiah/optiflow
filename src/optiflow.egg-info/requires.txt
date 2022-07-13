@@ -1,0 +1,5 @@
+torch>=1.6.0
+numpy>=1.21.6
+polyscope>=1.2.0
+POT>=0.8.2
+matplotlib>=3.3.1
