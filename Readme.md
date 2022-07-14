@@ -1,8 +1,8 @@
-# Optiflow
+# optiflow
 <img src="Images/optiflow_logo.png" alt="drawing" width="500"/>
 
-**optiflow** is an algorithm design to reconstruct **velocity fields** from **kymographs** with **optimal transport**. Indeed, optimal transport gives the velocity field of minimal work, which is relevant under a wide array of situations and does not necessitates hard physical assumptions, except for the conservation of the physical quantity that we are measuring across time.
-This software is designed to offer cell biologists a simple method to obtain these flow fields from free, offering a quantitative measurement for a flow that can only be observed visually.
+**optiflow** is an algorithm designed to reconstruct **velocity fields** from **kymographs** with **optimal transport**. Indeed, optimal transport computes the velocity field of minimal work, which is relevant under a wide array of situations and does not necessitates hard physical assumptions, except for the conservation of the physical quantity that we are measuring across time.
+This software is designed to offer cell biologists a simple method to obtain these flow fields from free, offering a quantitative measurement for a flow that can only be observed visually otherwise.
 
 
 ---
