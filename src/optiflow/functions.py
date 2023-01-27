@@ -23,7 +23,6 @@ def define_matrices(npoints,signed_dist =True,plot = False):
         plt.colorbar()
         
     return(C_tot,D_tot)
-    
 
 def define_cost_matrix_circular(npoints):
     if npoints%2 >0 : 
@@ -34,12 +33,12 @@ def define_cost_matrix_circular(npoints):
     M = ot.dist(x.reshape((nl, 1)), x.reshape((nl, 1)))
     M_tot = np.zeros((npoints,npoints))
     M_tot[0,:nl] = M[0]
-    M_tot[0,-nl:] = M[0][::-1]
+    M_tot[0,-nl+1:] = M[0][::-1][:-1]
+    if npoints%2 ==0 : 
+        M_tot[0,-nl]=(np.sqrt(M[0][-1])+1)**2
     for i in range(1,len(M_tot)): 
         M_tot[i] = np.roll(M_tot[i-1],1)
-        
-    #if npoints%2>0 : 
-    #    M_tot=M_tot[:-1,:-1]
+
     return(M_tot)
 
 def define_distance_matrix_circular(npoints,signed=True): 
@@ -58,22 +57,21 @@ def define_distance_matrix_circular(npoints,signed=True):
         
     sM_tot = np.zeros((npoints,npoints))
     sM_tot[0,:nl] = sM[0]
-    sM_tot[0,-nl:] = - sM[0][::-1]
+    sM_tot[0,-nl+1:] = - sM[0][::-1][:-1]
+    if npoints%2 ==0 : 
+        sM_tot[0,-nl]=(sM[0][-1]+1)
     for i in range(1,len(sM_tot)): 
         sM_tot[i] = np.roll(sM_tot[i-1],1)
 
-    #if npoints%2>0 : 
-    #    sM_tot=sM_tot[:-1,:-1]
-
     return(sM_tot)
-
+import ot
 
 def compute_displacements_from_kymograph(K, C, D): 
     V = np.zeros(K.shape)
     for t in range(len(K[0])-1):
         try : 
-            a = K[:,t]
-            b = K[:,t+1]
+            a = K[:,t].copy(order='C')
+            b = K[:,t+1].copy(order='C')
             a/=np.sum(a)
             b/=np.sum(b)
 
@@ -84,10 +82,10 @@ def compute_displacements_from_kymograph(K, C, D):
                 Displacements[i] = np.sum(D[i] * M[i]/a[i])
             V[:,t] = Displacements.copy()
         except : 
+            print("ouille")
             V[:,t] = Displacements.copy()
     
     return(V[:,:-1])
-
 
 
 def plot_vector_field(V,t,pool_size = 25):

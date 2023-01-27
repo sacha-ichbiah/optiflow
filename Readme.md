@@ -6,16 +6,51 @@ This software is designed to offer cell biologists a simple method to obtain flo
 
 
 ---
-## Introductory notebook
+## Example
 <img src="Images/optiflow_example.png" alt="drawing" width="500"/>
-An example is provided in the jupyter notebook Optiflow_presentation.ipynb
 
+
+Load an instance segmentation, reconstruct its multimaterial mesh, and extract its geometry:
+
+```shell
+pip install optiflow`
+
+```
+
+```py
+from optiflow import define_matrices, compute_displacements_from_kymograph,plot_vector_field
+
+## Load the kymograph
+import numpy as np 
+K = np.load("Kymograph_example.npy")
+nt =  len(K)
+
+#Define the distance matrices (we use circular boundary condition) and compute the displacements
+C,D = define_matrices(npoints = nt,plot=True)
+V = compute_displacements_from_kymograph(K,C,D)
+
+#Visualize 
+import matplotlib.pyplot as plt
+vmin = min(np.abs(V.min()),V.max())
+plt.imshow(V.clip(-vmin,vmin),plt.cm.bwr,extent = (0,1,0,1))
+plot_vector_field(V,t=7,pool_size = 25)
+
+```
 ---
 
-## Installation
-To install the package 
+### API and Documentation
 
-`python -m pip install optiflow`
+#### The kymograph K 
+By convention, the kymograph `K` is a `nb * nt` matrix, where nb is the number of bins used to discretize the space, and nt is the number of time points. 
+
+
+- `define_matrices(npoints, plot=False)` computes the distance and cost matrices according to the kymograph. 
+    - `return C,D`, where `C` is the cost matrix and `D` is the distance matrix
+
+
+#### Computation of displacement fields from kymographs
+- `compute_displacements_from_kymograph(K,C,D)` compute the displacement field using optimal transport
+	- `return V`, a `nb * (nt-1)` matrix of the velocity fields inferred. 
 
 ---
 
