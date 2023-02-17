@@ -114,13 +114,12 @@ def plot_vector_field(V,t,pool_size = 25):
         vec_normal[:,i]*=d/scale/2
 
     s = d.copy()
-    s[15:]*=-1
+    s[len(s)//2:]*=-1
     pos_vec_normal = vec_normal.copy()
     neg_vec_normal = vec_normal.copy()
     for i in range(3): 
         pos_vec_normal[:,i]*= ((s>0).astype(int))
-        neg_vec_normal[:,i]*= ((s<=0).astype(int))
-
+        neg_vec_normal[:,i]*= ((s<0).astype(int))
     ps_cloud.add_vector_quantity("Positive flows", pos_vec_normal,vectortype="ambient", enabled=True,radius = 0.013, color = [0.6745098 , 0.17254902, 0.17254902] )#, color = "#AC2C2C")
     ps_cloud.add_vector_quantity("Negative flows", neg_vec_normal,vectortype="ambient", enabled=True,radius = 0.013, color = [0.17254902, 0.28235294, 0.6745098 ] )
     ps.set_ground_plane_mode("none")
