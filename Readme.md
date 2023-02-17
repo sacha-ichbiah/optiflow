@@ -10,10 +10,8 @@ This software is designed to offer cell biologists a simple method to obtain flo
 <img src="Images/optiflow_example.png" alt="drawing" width="500"/>
 
 
-Load an instance segmentation, reconstruct its multimaterial mesh, and extract its geometry:
-
 ```shell
-pip install optiflow`
+pip install optiflow
 
 ```
 
@@ -21,7 +19,6 @@ pip install optiflow`
 from optiflow import define_matrices, compute_displacements_from_kymograph,plot_vector_field
 
 ## Load the kymograph
-import numpy as np 
 K = np.load("Kymograph_example.npy")
 nt =  len(K)
 
@@ -30,7 +27,6 @@ C,D = define_matrices(npoints = nt,plot=True)
 V = compute_displacements_from_kymograph(K,C,D)
 
 #Visualize 
-import matplotlib.pyplot as plt
 vmin = min(np.abs(V.min()),V.max())
 plt.imshow(V.clip(-vmin,vmin),plt.cm.bwr,extent = (0,1,0,1))
 plot_vector_field(V,t=7,pool_size = 25)
