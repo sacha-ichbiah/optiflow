@@ -54,16 +54,12 @@ By convention, the kymograph `K` is a `nb * nt` matrix, where nb is the number o
 A preprint of the paper using this method is available on [BiorXiv](https://www.biorxiv.org/content/10.1101/2022.09.07.507005v1). The data used in the paper are available in [this repo](https://github.com/VirtualEmbryo/membrane-cortex-tension). If you use our library in your work please cite the paper : 
 
 ```
-@article {De Belly2022.09.07.507005,
-	author = {De Belly, Henry and Yan, Shannon and Borja da Rocha, Hudson and Ichbiah, Sacha and Town, Jason P and Turlier, Herv{\'e} and Bustamante, Carlos J and Weiner, Orion D},
-	title = {Actin-driven protrusions generate rapid long-range membrane tension propagation in cells},
-	elocation-id = {2022.09.07.507005},
-	year = {2022},
-	doi = {10.1101/2022.09.07.507005},
-	publisher = {Cold Spring Harbor Laboratory},
-	abstract = {Membrane tension is thought to be a long-range integrator of cell physiology. This role necessitates effective tension transmission across the cell. However, the field remains strongly divided as to whether cell membranes support or resist tension propagation, in part due to a lack of adequate tools for locally manipulating membrane tension. We overcome these limitations by leveraging optogenetics to generate localized actin-based protrusions while concurrently monitoring the propagation of membrane tension using dual-trap optical tweezers. Surprisingly, actin-driven protrusions elicit rapid global membrane tension propagation with little to no attenuation, while forces applied to the cell membrane only do not. We present a simple unifying mechanical model in which mechanical forces that act on both the membrane and actin cortex drive rapid, robust membrane tension propagation.Competing Interest StatementThe authors have declared no competing interest.},
-	URL = {https://www.biorxiv.org/content/early/2022/09/08/2022.09.07.507005},
-	eprint = {https://www.biorxiv.org/content/early/2022/09/08/2022.09.07.507005.full.pdf},
-	journal = {bioRxiv}}
+@article{de2023cell,
+  title={Cell protrusions and contractions generate long-range membrane tension propagation},
+  author={De Belly, Henry and Yan, Shannon and da Rocha, Hudson Borja and Ichbiah, Sacha and Town, Jason P and Zager, Patrick J and Estrada, Dorothy C and Meyer, Kirstin and Turlier, Herv{\'e} and Bustamante, Carlos and others},
+  journal={Cell},
+  year={2023},
+  publisher={Elsevier}
+}
 
 
